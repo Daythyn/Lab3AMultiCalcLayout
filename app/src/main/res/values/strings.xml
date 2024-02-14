@@ -1,23 +1,25 @@
 <resources>
     <string name="app_name">Lab3AMultiCalcLayout</string>
-    <string name="_0">0</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
-    <string name="_5">5</string>
-    <string name="_6">6</string>
-    <string name="_7">7</string>
-    <string name="_8">8</string>
-    <string name="_9">9</string>
-    <string name="c">C</string>
-    <string name="_dec">.</string>
-    <string name="_div">÷</string>
-    <string name="_eq">=</string>
-    <string name="_min">-</string>
-    <string name="_mod">%</string>
-    <string name="_mul">*</string>
-    <string name="_sign">±</string>
-    <string name="_sqrt">√</string>
-    <string name="_plus">+</string>
+    <string-array name="buttons">
+        <item name="b0">7</item>
+        <item name="b1">8</item>
+        <item name="b2">9</item>
+        <item name="b3">√</item>
+        <item name="b4">C</item>
+        <item name="b5">4</item>
+        <item name="b6">5</item>
+        <item name="b7">6</item>
+        <item name="b8">\u00F7</item>
+        <item name="b9">%</item>
+        <item name="b10">1</item>
+        <item name="b11">2</item>
+        <item name="b12">3</item>
+        <item name="b13">*</item>
+        <item name="b14">-</item>
+        <item name="b15">±</item>
+        <item name="b16">0</item>
+        <item name="b17">.</item>
+        <item name="b18">+</item>
+        <item name="b19">=</item>
+    </string-array>
 </resources>
