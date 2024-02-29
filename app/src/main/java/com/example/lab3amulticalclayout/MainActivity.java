@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements AbstractView{
         tv.setText("0123");
         tv.setTextSize(48);
         tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-        tv.setEms(10);
+        tv.setEms(12);
         tv.setGravity(Gravity.CENTER_VERTICAL);
         layout.addView(tv);
 

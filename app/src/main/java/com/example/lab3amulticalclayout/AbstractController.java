@@ -87,7 +87,7 @@ public abstract class AbstractController implements PropertyChangeListener {
          */
 
         for (AbstractModel model : models) {
-            Log.i("MainActivity", "Looking for  " + propertyName + "  " + newValue + "   AbsCont");
+            //Log.i("MainActivity", "Looking for  " + propertyName + "  " + newValue + "   AbsCont");
 
             try {
 

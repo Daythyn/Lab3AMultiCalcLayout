@@ -17,7 +17,7 @@ public class DefaultController extends AbstractController
 
     public void digitPress(String newText) {
         setModelProperty(ELEMENT_DIGITPRESS_PROPERTY, newText);
-        Log.i("MainActivity", newText + "  Controller");
+        //Log.i("MainActivity", newText + "  Controller");
     }
     public void operPress(String newText) {
         setModelProperty(ELEMENT_OPER_PROPERTY, newText);
