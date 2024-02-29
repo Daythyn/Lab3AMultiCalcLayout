@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements AbstractView{
         @Override
         public void onClick(View view) {
             String tag = view.getTag().toString();
-            Toast toast = Toast.makeText(binding.getRoot().getContext(), tag, Toast.LENGTH_SHORT);
-            toast.show();
+            //Toast toast = Toast.makeText(binding.getRoot().getContext(), tag, Toast.LENGTH_SHORT);
+            //toast.show();
 
 
             if (tag.equals("b0")) {
