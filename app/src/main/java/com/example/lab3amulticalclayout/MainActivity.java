@@ -1,9 +1,13 @@
 package com.example.lab3amulticalclayout;
 
+import static androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.getTag;
+
+import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
@@ -13,19 +17,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lab3amulticalclayout.databinding.ActivityMainBinding;
 
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AbstractView{
 
     private ActivityMainBinding binding;
     private final int KEY_WIDTH = 5;
     private final int KEY_HEIGHT = 4;
     private final int KEYS = KEY_WIDTH * KEY_HEIGHT;
     private static final String TAG = "MainActivity";
+    private DefaultController controller;
 
 
     @Override
@@ -34,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        controller = new DefaultController();
+        DefaultModel model = new DefaultModel();
+
+        controller.addView(this);
+        controller.addModel(model);
+
+        model.initDefault();
 
         Log.i(TAG, String.valueOf(KEYS));
         initLayout();
@@ -63,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         tv.setLayoutParams(params);
 
         //Buttons
+        CalculatorClickHandler click = new CalculatorClickHandler();
+
         int[] buttonIds = new int[KEYS]; // array of TextView IDs
         String[] bText = getResources().getStringArray(R.array.buttons);
         for (int i = 0; i < KEYS; ++i) {
@@ -72,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             but.setTag("b" + i); // assign tag (for acquiring references later)
             but.setText(bText[i]); // set text (using a string resource)
             but.setTextSize(24); // set size
+            but.setOnClickListener(click); //add click handler
             layout.addView(but); // add to layout
 
             params = but.getLayoutParams();
@@ -120,4 +138,116 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void modelPropertyChange(PropertyChangeEvent evt) {
+        String propertyName = evt.getPropertyName();
+        String propertyValue = evt.getNewValue().toString();
+
+        if ( propertyName.equals(DefaultController.ELEMENT_BUTTONPRESS_PROPERTY) ) {
+
+
+            TextView text = binding.getRoot().findViewWithTag("tv1");
+            String oldPropertyValue = text.getText().toString();
+
+            if ( !oldPropertyValue.equals(propertyValue) ) {
+                text.setText(propertyValue);
+            }
+
+        }
+    }
+
+    class CalculatorClickHandler implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            String tag = view.getTag().toString();
+            Toast toast = Toast.makeText(binding.getRoot().getContext(), tag, Toast.LENGTH_SHORT);
+            toast.show();
+
+
+            if (tag.equals("b0")) {
+                String newText = "7";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b1")) {
+                String newText = "8";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b2")) {
+                String newText = "9";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b3")) {
+                String newText = "√";
+                controller.b3Press(newText);
+            }
+            else if (tag.equals("b4")) {
+                String newText = "C";
+                controller.b4Press(newText);
+            }
+            else if (tag.equals("b5")) {
+                String newText = "4";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b6")) {
+                String newText = "5";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b7")) {
+                String newText = "6";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b8")) {
+                String newText = "÷";
+                controller.operPress(newText);
+            }
+            else if (tag.equals("b9")) {
+                String newText = "%";
+                controller.b9Press(newText);
+            }
+            else if (tag.equals("b10")) {
+                String newText = "1";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b11")) {
+                String newText = "2";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b12")) {
+                String newText = "3";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b13")) {
+                String newText = "*";
+                controller.operPress(newText);
+            }
+            else if (tag.equals("b14")) {
+                String newText = "-";
+                controller.operPress(newText);
+            }
+            else if (tag.equals("b15")) {
+                String newText = "Negate";
+                controller.b15Press(newText);
+            }
+            else if (tag.equals("b16")) {
+                String newText = "0";
+                controller.digitPress(newText);
+            }
+            else if (tag.equals("b17")) {
+                String newText = ".";
+                controller.b17Press(newText);
+            }
+            else if (tag.equals("b18")) {
+                String newText = "+";
+                controller.operPress(newText);
+            }
+            else if (tag.equals("b19")) {
+                String newText = "=";
+                controller.b19Press(newText);
+            }
+        }
+
+    }
+
 }
+
